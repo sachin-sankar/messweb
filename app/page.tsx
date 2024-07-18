@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Carousel } from "@mantine/carousel";
 import {
   ActionIcon,
@@ -7,6 +7,7 @@ import {
   Drawer,
   Group,
   Image,
+  LoadingOverlay,
   SegmentedControl,
   Stack,
   Title,
@@ -20,9 +21,15 @@ import {
   IconTriangleFilled,
 } from "@tabler/icons-react";
 import MenuCard from "./components/MenuCard";
+import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
   const [opened, { open, close }] = useDisclosure(false);
+  const { data, isError, isLoading } = useQuery({
+    queryKey: ["getMenu"],
+    queryFn: () => fetch("/api?hostel=1&mess=1").then((resp) => resp.json()),
+  });
   return (
     <main>
       <Group justify="space-between" m={"md"}>
@@ -40,9 +47,15 @@ export default function Home() {
         </ActionIcon>
       </Group>
       <Divider my="md" />
-      <Drawer opened={opened} onClose={close} title="Prefrences" position="bottom" overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}>
+      <Drawer
+        opened={opened}
+        onClose={close}
+        title="Prefrences"
+        position="bottom"
+        overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
+      >
         {
-          <Stack >
+          <Stack>
             <Group justify="center" grow>
               <SegmentedControl
                 p={"sm"}
@@ -110,18 +123,33 @@ export default function Home() {
                 ]}
               />
             </Group>
-            <Button fullWidth rightSection={<IconAdjustmentsCheck />} onClick={close}>
+            <Button
+              fullWidth
+              rightSection={<IconAdjustmentsCheck />}
+              onClick={close}
+            >
               Save Prefrences
             </Button>
           </Stack>
         }
       </Drawer>
-      <Carousel slideSize="85%" height={'screen'}  slideGap="xs" align={"center"}>
-      <Carousel.Slide><MenuCard/></Carousel.Slide>
-      <Carousel.Slide><MenuCard/></Carousel.Slide>
-      <Carousel.Slide><MenuCard/></Carousel.Slide>
-      <Carousel.Slide><MenuCard/></Carousel.Slide>
-    </Carousel>
+      <LoadingOverlay
+        visible={isLoading}
+        overlayProps={{ radius: "sm", blur: 2 }}
+        loaderProps={{ color: "blue", type: "bars" }}
+      />
+      <Carousel slideSize="85%" slideGap="xs" align={"center"}>
+        {isLoading
+          ? ""
+          : data["menu"].map((menuDay: any) => {
+              return (
+                <Carousel.Slide>
+                  <MenuCard date={menuDay["date"]} menu={menuDay["menu"]} />
+                </Carousel.Slide>
+              );
+            })}
+      </Carousel>
+      
     </main>
   );
 }
