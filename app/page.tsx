@@ -4,14 +4,17 @@ import MenuCard from "./components/MenuCard";
 import { useQuery } from "@tanstack/react-query";
 import Shell from "./components/Shell";
 import { Center, Loader } from "@mantine/core";
+import { useLocalStorage } from "@mantine/hooks";
 
 export default function Home() {
-  const { data, isError, isLoading } = useQuery({
+  const [hostel,setHostel] = useLocalStorage({key:'hostel',defaultValue:'1'})
+    const [mess,setMess] = useLocalStorage({key:'mess',defaultValue:'1'})
+  const { data, isError, isFetching } = useQuery({
     queryKey: ["getMenu"],
-    queryFn: () => fetch("/api?hostel=1&mess=1").then((resp) => resp.json()),
+    queryFn: () => fetch(`/api?hostel=${hostel}&mess=${mess}`).then((resp) => resp.json()),
   });
   let date = new Date();
-  if (isLoading) {
+  if (isFetching) {
     return (
       <Shell>
         <Center style={{height:'80vh'}}><Loader color="blue" size="xl" type="bars" /></Center>

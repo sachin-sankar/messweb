@@ -9,7 +9,7 @@ import {
   Title,
   Image
 } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { useDisclosure, useLocalStorage } from "@mantine/hooks";
 import {
   IconAdjustments,
   IconCircleFilled,
@@ -17,6 +17,7 @@ import {
   IconStarFilled,
   IconAdjustmentsCheck,
 } from "@tabler/icons-react";
+import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
 
 const Shell = ({
@@ -25,6 +26,9 @@ const Shell = ({
     children: React.ReactNode;
   }) => {
     const [opened, { open, close }] = useDisclosure(false);
+    const queryClient = useQueryClient()
+    const [hostel,setHostel] = useLocalStorage({key:'hostel',defaultValue:'1'})
+    const [mess,setMess] = useLocalStorage({key:'mess',defaultValue:'1'})
   return (
     <>
       <Group justify="space-between" m={"md"}>
@@ -53,10 +57,12 @@ const Shell = ({
           <Stack>
             <Group justify="center" grow>
               <SegmentedControl
+              onChange={setHostel}
+              value={hostel}
                 p={"sm"}
                 data={[
                   {
-                    value: "men",
+                    value: '1',
                     label: (
                       <Stack gap={0}>
                         <Image src={"man.svg"}></Image>
@@ -65,7 +71,7 @@ const Shell = ({
                     ),
                   },
                   {
-                    value: "woman",
+                    value: "2",
                     label: (
                       <Stack gap={0}>
                         <Image src={"woman.svg"}></Image>
@@ -78,9 +84,11 @@ const Shell = ({
             </Group>
             <Group justify="center" grow>
               <SegmentedControl
+              onChange={setMess}
+              value={mess}
                 data={[
                   {
-                    value: "veg",
+                    value: "3",
                     label: (
                       <Group justify="center" align="center">
                         <IconCircleFilled
@@ -92,7 +100,7 @@ const Shell = ({
                     ),
                   },
                   {
-                    value: "nonveg",
+                    value: "2",
                     label: (
                       <Group justify="center" align="center">
                         <IconTriangleFilled
@@ -104,7 +112,7 @@ const Shell = ({
                     ),
                   },
                   {
-                    value: "special",
+                    value: "1",
                     label: (
                       <Group justify="center" align="center">
                         <IconStarFilled
@@ -121,7 +129,10 @@ const Shell = ({
             <Button
               fullWidth
               rightSection={<IconAdjustmentsCheck />}
-              onClick={close}
+              onClick={()=>{
+                close()
+                queryClient.invalidateQueries()
+              }}
             >
               Save Prefrences
             </Button>
