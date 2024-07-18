@@ -1,3 +1,4 @@
+'use client'
 import {
   ActionIcon,
   Button,
@@ -7,7 +8,8 @@ import {
   SegmentedControl,
   Stack,
   Title,
-  Image
+  Image,
+  Text,
 } from "@mantine/core";
 import { useDisclosure, useLocalStorage } from "@mantine/hooks";
 import {
@@ -18,36 +20,73 @@ import {
   IconAdjustmentsCheck,
 } from "@tabler/icons-react";
 import { useQueryClient } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect } from "react";
 
-const Shell = ({
-    children,
-  }: {
-    children: React.ReactNode;
-  }) => {
-    const [opened, { open, close }] = useDisclosure(false);
-    const queryClient = useQueryClient()
-    const [hostel,setHostel] = useLocalStorage({key:'hostel',defaultValue:'1'})
-    const [mess,setMess] = useLocalStorage({key:'mess',defaultValue:'1'})
+const HostelMap: any = {
+  "1": (
+    <Text size="md" c={"blue"}>
+      Men's Hostel
+    </Text>
+  ),
+  "2": (
+    <Text size="md" c={"pink"}>
+      Woman's Hostel
+    </Text>
+  ),
+};
+const MessMap: any = {
+  "1": (
+    <IconStarFilled
+      className="border-2 border-spacing-2 border-amber-600"
+      color="#d97706"
+    />
+    
+  ),
+  2: (
+    <IconTriangleFilled
+      className="border-2 border-spacing-2 border-red-600"
+      color="#dc2626"
+    />
+  ),
+  3: (
+    <IconCircleFilled
+      className="border-2 border-spacing-2 border-green-600"
+      color="#16a34a"
+    />
+  ),
+};
+const Shell = ({ children }: { children: React.ReactNode }) => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const queryClient = useQueryClient();
+  const [hostel, setHostel] = useLocalStorage({
+    key: "hostel",
+  });
+  const [mess, setMess] = useLocalStorage({ key: "mess" });
+  const [firstTime,setFirstTime] = useLocalStorage({key:'firstTime',defaultValue:true})
   return (
     <>
       <Group justify="space-between" m={"md"}>
         <Title order={2}>MessWeb</Title>
-        <ActionIcon
-          variant="light"
-          size="lg"
-          aria-label="Settings"
-          onClick={open}
-        >
-          <IconAdjustments
-            style={{ width: "70%", height: "70%" }}
-            stroke={1.5}
-          />
-        </ActionIcon>
+        <Group gap={"xs"}>
+          {HostelMap[hostel]}
+          {MessMap[mess]}
+
+          <ActionIcon
+            variant="light"
+            size="lg"
+            aria-label="Settings"
+            onClick={open}
+          >
+            <IconAdjustments
+              style={{ width: "70%", height: "70%" }}
+              stroke={1.5}
+            />
+          </ActionIcon>
+        </Group>
       </Group>
       <Divider my="md" />
       <Drawer
-        opened={opened}
+        opened={opened||firstTime}
         onClose={close}
         title="Prefrences"
         position="bottom"
@@ -57,12 +96,12 @@ const Shell = ({
           <Stack>
             <Group justify="center" grow>
               <SegmentedControl
-              onChange={setHostel}
-              value={hostel}
+                onChange={setHostel}
+                value={hostel}
                 p={"sm"}
                 data={[
                   {
-                    value: '1',
+                    value: "1",
                     label: (
                       <Stack gap={0}>
                         <Image src={"man.svg"}></Image>
@@ -84,8 +123,8 @@ const Shell = ({
             </Group>
             <Group justify="center" grow>
               <SegmentedControl
-              onChange={setMess}
-              value={mess}
+                onChange={setMess}
+                value={mess}
                 data={[
                   {
                     value: "3",
@@ -129,9 +168,10 @@ const Shell = ({
             <Button
               fullWidth
               rightSection={<IconAdjustmentsCheck />}
-              onClick={()=>{
-                close()
-                queryClient.invalidateQueries()
+              onClick={() => {
+                close();
+                queryClient.invalidateQueries();
+                setFirstTime(false)
               }}
             >
               Save Prefrences
