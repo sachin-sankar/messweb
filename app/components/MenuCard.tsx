@@ -55,7 +55,7 @@ const MenuCard = ({date,menu}:{date:string,menu:Array<{type:number,menu:string}>
                 </Group>
               </Text>
             </Stack>
-            <Text mt={'md'}>{time.menu}</Text>
+            <Text mt={'xs'}>{time.menu}</Text>
           </Card.Section>
         );
       })}
