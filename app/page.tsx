@@ -110,7 +110,7 @@ export default function Home() {
                 ]}
               />
             </Group>
-            <Button fullWidth rightSection={<IconAdjustmentsCheck />}>
+            <Button fullWidth rightSection={<IconAdjustmentsCheck />} onClick={close}>
               Save Prefrences
             </Button>
           </Stack>
