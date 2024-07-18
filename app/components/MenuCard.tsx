@@ -30,13 +30,16 @@ const DayColor:any = {
 
 const MenuCard = ({date,menu}:{date:string,menu:Array<{type:number,menu:string}>}) => {
   let dateObj = new Date(date)
+  let today = new Date().getDate()
   const month = dateObj.toLocaleString('default', { month: 'long' })
   const day = dateObj.toLocaleString('default', { weekday: 'long' })
+  const dateNumber = dateObj.getDate()
+  const dateLabel = `${month} ${dateObj.getDate()}`
   return (
     <Card withBorder style={{'height':'100%'}}>
       <Card.Section withBorder p={"sm"}>
         <Group justify="space-between" align="center">
-          <Text size="xl" fw={700}>{month} {dateObj.getDate()}</Text>
+          <Text size="xl" fw={700}>{dateNumber==today?'Today':dateNumber==today+1?'Tommorow':`${month} ${dateNumber}`}</Text>
           <Badge color={DayColor[day.toLowerCase()]} size="lg">
             {day}
           </Badge>
