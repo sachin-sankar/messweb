@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import {
   ActionIcon,
   Button,
@@ -10,6 +10,9 @@ import {
   Title,
   Image,
   Text,
+  Paper,
+  Avatar,
+  Flex,
 } from "@mantine/core";
 import { useDisclosure, useLocalStorage } from "@mantine/hooks";
 import {
@@ -18,6 +21,7 @@ import {
   IconTriangleFilled,
   IconStarFilled,
   IconAdjustmentsCheck,
+  IconBrandGithubFilled,
 } from "@tabler/icons-react";
 import { useQueryClient } from "@tanstack/react-query";
 import React, { useEffect } from "react";
@@ -40,7 +44,6 @@ const MessMap: any = {
       className="border-2 border-spacing-2 border-amber-600"
       color="#d97706"
     />
-    
   ),
   2: (
     <IconTriangleFilled
@@ -62,7 +65,10 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
     key: "hostel",
   });
   const [mess, setMess] = useLocalStorage({ key: "mess" });
-  const [firstTime,setFirstTime] = useLocalStorage({key:'firstTime',defaultValue:true})
+  const [firstTime, setFirstTime] = useLocalStorage({
+    key: "firstTime",
+    defaultValue: true,
+  });
   return (
     <>
       <Group justify="space-between" m={"md"}>
@@ -86,7 +92,7 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
       </Group>
       <Divider my="md" />
       <Drawer
-        opened={opened||firstTime}
+        opened={opened || firstTime}
         onClose={close}
         title="Prefrences"
         position="bottom"
@@ -171,7 +177,7 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
               onClick={() => {
                 close();
                 queryClient.invalidateQueries();
-                setFirstTime(false)
+                setFirstTime(false);
               }}
             >
               Save Prefrences
@@ -180,6 +186,49 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
         }
       </Drawer>
       {children}
+      <Divider my={'md'}/>
+      <Paper px={"sm"} pb={'xs'}>
+        <Stack gap={0}>
+          <Group justify="center" align="center" gap={"xs"}>
+            <Text>Built by</Text>
+            <Flex
+              gap={0}
+              bg={"gray"}
+              px={"sm"}
+              py={2}
+              justify={"center"}
+              align={"center"}
+              style={{ borderRadius: "80px" }}
+              onClick={()=>{
+                window.open('https://bento.me/sachinsankar','_blank')
+              }}
+            >
+              <Avatar
+                radius="xl"
+                src={"https://avatars.githubusercontent.com/u/73470743"}
+              ></Avatar>
+              <Text>Sachin Sankar</Text>
+            </Flex>
+          </Group>
+          <Group justify="center" align="center" gap={"xs"}>
+            <Text>Fully Open Source. Source Code available in </Text>
+            <ActionIcon
+              variant="default"
+              size="lg"
+              radius="xl"
+              aria-label="Settings"
+              onClick={()=>{
+                window.open('https://github.com/sachin-sankar/messweb','_blank')
+              }}
+            >
+              <IconBrandGithubFilled
+                style={{ width: "70%", height: "70%" }}
+                stroke={1.5}
+              />
+            </ActionIcon>
+          </Group>
+        </Stack>
+      </Paper>
     </>
   );
 };
