@@ -7,17 +7,23 @@ import { Center, Loader } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
 
 export default function Home() {
-  const [hostel,setHostel] = useLocalStorage({key:'hostel',defaultValue:'1'})
-    const [mess,setMess] = useLocalStorage({key:'mess',defaultValue:'1'})
+  const [hostel, setHostel] = useLocalStorage({
+    key: "hostel",
+    defaultValue: "1",
+  });
+  const [mess, setMess] = useLocalStorage({ key: "mess", defaultValue: "1" });
   const { data, isError, isFetching } = useQuery({
     queryKey: ["getMenu"],
-    queryFn: () => fetch(`/api?hostel=${hostel}&mess=${mess}`).then((resp) => resp.json()),
+    queryFn: () =>
+      fetch(`/api?hostel=${hostel}&mess=${mess}`).then((resp) => resp.json()),
   });
   let date = new Date();
   if (isFetching) {
     return (
       <Shell>
-        <Center style={{height:'80vh'}}><Loader color="blue" size="xl" type="bars" /></Center>
+        <Center style={{ height: "80vh" }}>
+          <Loader color="blue" size="xl" type="bars" />
+        </Center>
       </Shell>
     );
   } else {
@@ -30,11 +36,13 @@ export default function Home() {
           initialSlide={date.getDate() - 1}
         >
           {data["menu"].map((menuDay: any) => {
-            return (
-              <Carousel.Slide>
-                <MenuCard date={menuDay["date"]} menu={menuDay["menu"]} />
-              </Carousel.Slide>
-            );
+            if (menuDay) {
+              return (
+                <Carousel.Slide>
+                  <MenuCard date={menuDay["date"]} menu={menuDay["menu"]} />
+                </Carousel.Slide>
+              );
+            }
           })}
         </Carousel>
       </Shell>
