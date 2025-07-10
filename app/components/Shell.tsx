@@ -186,8 +186,8 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
         }
       </Drawer>
       {children}
-      <Divider my={'md'}/>
-      <Paper px={"sm"} pb={'xs'}>
+      <Divider my={"md"} />
+      <Paper px={"sm"} pb={"xs"}>
         <Stack gap={0}>
           <Group justify="center" align="center" gap={"xs"}>
             <Text>Built by</Text>
@@ -199,14 +199,10 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
               justify={"center"}
               align={"center"}
               style={{ borderRadius: "80px" }}
-              onClick={()=>{
-                window.open('https://bento.me/sachinsankar','_blank')
+              onClick={() => {
+                window.open("https://bento.me/sachinsankar", "_blank");
               }}
             >
-              <Avatar
-                radius="xl"
-                src={"https://avatars.githubusercontent.com/u/73470743"}
-              ></Avatar>
               <Text>Sachin Sankar</Text>
             </Flex>
           </Group>
@@ -217,8 +213,11 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
               size="lg"
               radius="xl"
               aria-label="Settings"
-              onClick={()=>{
-                window.open('https://github.com/sachin-sankar/messweb','_blank')
+              onClick={() => {
+                window.open(
+                  "https://github.com/sachin-sankar/messweb",
+                  "_blank",
+                );
               }}
             >
               <IconBrandGithubFilled
