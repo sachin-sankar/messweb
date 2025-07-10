@@ -186,8 +186,8 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
         }
       </Drawer>
       {children}
-      <Divider my={"md"} />
-      <Paper px={"sm"} pb={"xs"}>
+      <Paper px={"sm"} pb={"xs"} className="relative bottom-0">
+        <Divider my={"md"} />
         <Stack gap={0}>
           <Group justify="center" align="center" gap={"xs"}>
             <Text>Built by</Text>
