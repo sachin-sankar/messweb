@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   let mess = request.nextUrl.searchParams.get("mess");
 
   let resp = await fetch(
-    `https://messit-server-vinnovateit.vercel.app/?hostel=${hostel}&mess=${mess}`,
+    `https://messit.vinnovateit.com/menu-data/hostel-${hostel}-mess-${mess}.json`,
   );
   let data = await resp.json();
 
