@@ -49,7 +49,6 @@ export default function Home() {
           <Carousel
             slideSize="85%"
             slideGap="xs"
-            align={"center"}
             initialSlide={date.getDate() - 1}
           >
             {data["menu"].map((menuDay: any) => {
