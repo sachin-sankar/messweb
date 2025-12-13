@@ -9,24 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mantine/carousel": "^7.11.2",
-    "@mantine/core": "^7.11.2",
-    "@mantine/hooks": "^7.11.2",
-    "@tabler/icons-react": "^3.11.0",
-    "@tanstack/react-query": "^5.51.9",
-    "embla-carousel-react": "^7.1.0",
-    "next": "14.2.5",
-    "react": "^18",
-    "react-dom": "^18"
+    "@mantine/carousel": "^8.3.10",
+    "@mantine/core": "^8.3.10",
+    "@mantine/hooks": "^8.3.10",
+    "@tabler/icons-react": "^3.35.0",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@tanstack/react-query": "^5.90.12",
+    "embla-carousel-react": "^8.6.0",
+    "next": "16.0.10",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
   },
   "devDependencies": {
-    "@types/node": "^20.16.11",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18",
-    "postcss": "^8.4.39",
-    "postcss-preset-mantine": "^1.16.0",
+    "@types/node": "^25.0.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "postcss": "^8.5.6",
+    "postcss-preset-mantine": "^1.18.0",
     "postcss-simple-vars": "^7.0.1",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
   }
 }
