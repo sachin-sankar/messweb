@@ -39,24 +39,9 @@ const HostelMap: any = {
   ),
 };
 const MessMap: any = {
-  "1": (
-    <IconStarFilled
-      className="border-2 border-spacing-2 border-amber-600"
-      color="#d97706"
-    />
-  ),
-  2: (
-    <IconTriangleFilled
-      className="border-2 border-spacing-2 border-red-600"
-      color="#dc2626"
-    />
-  ),
-  3: (
-    <IconCircleFilled
-      className="border-2 border-spacing-2 border-green-600"
-      color="#16a34a"
-    />
-  ),
+  "1": <IconStarFilled className="border-2 border-spacing-2 border-amber-600" color="#d97706" />,
+  2: <IconTriangleFilled className="border-2 border-spacing-2 border-red-600" color="#dc2626" />,
+  3: <IconCircleFilled className="border-2 border-spacing-2 border-green-600" color="#16a34a" />,
 };
 const Shell = ({ children }: { children: React.ReactNode }) => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -74,19 +59,11 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
       <Group justify="space-between" m={"md"}>
         <Title order={2}>MessWeb</Title>
         <Group gap={"xs"}>
-          {HostelMap[hostel]}
-          {MessMap[mess]}
+          {hostel && HostelMap[hostel]}
+          {mess && MessMap[mess]}
 
-          <ActionIcon
-            variant="light"
-            size="lg"
-            aria-label="Settings"
-            onClick={open}
-          >
-            <IconAdjustments
-              style={{ width: "70%", height: "70%" }}
-              stroke={1.5}
-            />
+          <ActionIcon variant="light" size="lg" aria-label="Settings" onClick={open}>
+            <IconAdjustments style={{ width: "70%", height: "70%" }} stroke={1.5} />
           </ActionIcon>
         </Group>
       </Group>
@@ -214,16 +191,10 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
               radius="xl"
               aria-label="Settings"
               onClick={() => {
-                window.open(
-                  "https://github.com/sachin-sankar/messweb",
-                  "_blank",
-                );
+                window.open("https://github.com/sachin-sankar/messweb", "_blank");
               }}
             >
-              <IconBrandGithubFilled
-                style={{ width: "70%", height: "70%" }}
-                stroke={1.5}
-              />
+              <IconBrandGithubFilled style={{ width: "70%", height: "70%" }} stroke={1.5} />
             </ActionIcon>
           </Group>
         </Stack>
