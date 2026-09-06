@@ -1,34 +1,34 @@
 {
-  "name": "messweb",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@mantine/carousel": "^9.6.0",
-    "@mantine/core": "^9.6.0",
-    "@mantine/hooks": "^9.6.0",
-    "@tabler/icons-react": "^3.46.0",
-    "@tailwindcss/postcss": "^4.3.3",
-    "@tanstack/react-query": "^5.102.8",
-    "embla-carousel-react": "^8.6.0",
-    "next": "16.3.4",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
-  },
-  "devDependencies": {
-    "@types/node": "^26.4.1",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
-    "baseline-browser-mapping": "^2.11.21",
-    "postcss": "^8.5.28",
-    "postcss-preset-mantine": "^1.18.0",
-    "postcss-simple-vars": "^7.0.1",
-    "tailwindcss": "^4.3.3",
-    "typescript": "^7.0.2"
-  }
+	"name": "messweb",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@mantine/carousel": "^9.6.0",
+		"@mantine/core": "^9.6.0",
+		"@mantine/hooks": "^9.6.0",
+		"@tabler/icons-react": "^3.46.0",
+		"@tailwindcss/postcss": "^4.3.3",
+		"@tanstack/react-query": "^5.102.8",
+		"embla-carousel-react": "^8.6.0",
+		"next": "16.3.4",
+		"react": "^19.2.8",
+		"react-dom": "^19.2.8"
+	},
+	"devDependencies": {
+		"@types/node": "^26.4.1",
+		"@types/react": "^19.2.18",
+		"@types/react-dom": "^19.2.7",
+		"baseline-browser-mapping": "^2.11.21",
+		"postcss": "^8.5.28",
+		"postcss-preset-mantine": "^1.18.0",
+		"postcss-simple-vars": "^7.0.1",
+		"tailwindcss": "^4.3.3",
+		"typescript": "^7.0.2"
+	}
 }

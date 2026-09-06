@@ -8,27 +8,27 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { ReactQueryClientProvider } from "./components/ReactQueryProvider";
 
 export const metadata = {
-  title: "messWeb",
-  description: "Messit on the Web.",
+	title: "messWeb",
+	description: "Messit on the Web.",
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return (
-    <ReactQueryClientProvider>
-      <html lang="en">
-        <head>
-          <ColorSchemeScript defaultColorScheme="dark" />
-        </head>
-        <body>
-          <MantineProvider defaultColorScheme="dark">
-            {children}
-          </MantineProvider>
-        </body>
-      </html>
-    </ReactQueryClientProvider>
-  );
+	return (
+		<ReactQueryClientProvider>
+			<html lang="en">
+				<head>
+					<ColorSchemeScript defaultColorScheme="dark" />
+				</head>
+				<body>
+					<MantineProvider defaultColorScheme="dark">
+						{children}
+					</MantineProvider>
+				</body>
+			</html>
+		</ReactQueryClientProvider>
+	);
 }

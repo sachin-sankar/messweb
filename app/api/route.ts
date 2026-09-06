@@ -1,14 +1,14 @@
-import { NextResponse, NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 // To handle a GET request to /api
 export async function GET(request: NextRequest) {
-  let hostel = request.nextUrl.searchParams.get("hostel");
-  let mess = request.nextUrl.searchParams.get("mess");
+	const hostel = request.nextUrl.searchParams.get("hostel");
+	const mess = request.nextUrl.searchParams.get("mess");
 
-  let resp = await fetch(
-    `https://messit-server-vinnovateit.vercel.app/?hostel=${hostel}&mess=${mess}`,
-  );
-  let data = await resp.json();
+	const resp = await fetch(
+		`https://messit-server-vinnovateit.vercel.app/?hostel=${hostel}&mess=${mess}`,
+	);
+	const data = await resp.json();
 
-  return NextResponse.json(data, { status: 200 });
+	return NextResponse.json(data, { status: 200 });
 }
